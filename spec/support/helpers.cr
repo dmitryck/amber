@@ -49,8 +49,9 @@ def build_controller(referer)
 end
 
 def create_user_socket
+  request = HTTP::Request.new("GET", "/")
   ws = HTTP::WebSocket.new(STDOUT)
-  client_socket = UserSocket.new(ws)
+  client_socket = UserSocket.new(ws, create_context(request))
   return ws, client_socket
 end
 

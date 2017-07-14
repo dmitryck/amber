@@ -44,7 +44,7 @@ module Amber
         client_socket.disconnect!
         client_socket.socket.closed?.should be_true
         ws.close
-        http_server.not_nil!.close
+        http_server.close
       end
 
       it "should remove the client socket from the ClientSockets list" do
@@ -53,7 +53,7 @@ module Amber
         client_socket.disconnect!
         Amber::WebSockets::ClientSockets.client_sockets.keys.size.should eq 0
         ws.close
-        http_server.not_nil!.close
+        http_server.close
       end
     end
 
